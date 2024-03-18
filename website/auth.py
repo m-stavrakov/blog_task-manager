@@ -12,14 +12,15 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-
+        
         # Check if the User exists
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
-                flash('Logged in successfully!', category='success')
+                username = current_user.username
+                flash(f'Logged in successfully! Good to see you again {username}', category='success')
                 login_user(user, remember=True)
-                return redirect(url_for('views.home'))
+                return redirect(url_for('views.blog'))
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
@@ -27,11 +28,15 @@ def login():
 
     return render_template('login.html', user = current_user)
 
-@auth.route('/logout')
+@auth.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
-    logout_user()
-    return redirect(url_for('auth.login'))
+    if request.method == 'POST':
+        logout_user()
+        flash("You have been logged out from your blog!", category='success')
+        return redirect(url_for('views.home'))
+    
+    return render_template('logout.html')
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
@@ -46,7 +51,7 @@ def sign_up():
         user = User.query.filter_by(email=email).first()
 
         if user:
-            flash('Email already exists!', category='error')
+            flash(f"The email: '{email}' already exists!", category='error')
         elif len(email) < 5:
             flash('Email must be greater than 5 characters!', category='error')
         elif len(first_name) < 2 and len(last_name) < 2:
@@ -68,6 +73,6 @@ def sign_up():
             login_user(new_user, remember=True)
             flash('Account created!', category='success')
 
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.blog'))
     
     return render_template('signUp.html', user = current_user)

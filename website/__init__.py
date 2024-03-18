@@ -26,10 +26,5 @@ def create_app():
     # where the user will be redirected if they have not logged in
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
-
-    # telling flask which user to look for 
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(int(user_id))
     
     return app
