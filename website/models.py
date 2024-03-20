@@ -3,10 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text, ForeignKey, Integer, String
 from sqlalchemy.orm import Session, declarative_base, mapped_column, relationship
 import hashlib
-from . import db
+# from . import db
 from datetime import datetime
 
-# db = SQLAlchemy()
+db = SQLAlchemy()
 
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
@@ -31,5 +31,5 @@ class DiaryEntry(db.Model):
     def __str__(self):
         return f'"{self.title}" by {self.user.first_name} ({self.created_at:%d-%m-%Y})'
 
-class Tasks(db.Model):
-    pass
+# class Tasks(db.Model):
+#     pass

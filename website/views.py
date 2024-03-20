@@ -1,8 +1,8 @@
 # Storing standard roots for the website
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
-from flask_login import login_required, current_user, login_manager
+from flask_login import login_required, current_user
 from .models import DiaryEntry, User
-from . import db
+from . import db, login_manager
 import json
 
 views = Blueprint('views', __name__)
@@ -12,12 +12,12 @@ views = Blueprint('views', __name__)
 def load_user(user_id):
     return User.query.get(int(user_id))
     
-# not certain 
+# not certain if needed as only people logged in can see their diary
 def allow_edit(entry):
     return entry.user == current_user
 
 # this is the front page that the user will see when they aren't logged in
-views.route('/')
+@views.route('/')
 def home():
     if current_user.is_authenticated:
         return render_template('blog.html')

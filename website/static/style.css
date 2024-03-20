@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+
+:root{
+    --primary-font: 'Segoe UI', sans-serif;
+    --title-font: "Sacramento", sans-serif;
+    --body-color: #eed9c4;
+    --contrast-color: #d9b99b;
+    --title-color: #382615;
+}
+
+body{
+    background-color: var(--body-color);
+}
+
+/* NAVIGATION BAR */
+
+.nav{
+    padding: 0;
+}
+
+.nav-custom{
+    background-color: var(--contrast-color);
+    padding: 10px;
+}
+
+.nav-title{
+    font-family: var(--title-font);
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--title-color);
+}
+
+.nav-title:hover{
+    color: var(--title-color);
+}
+
+.nav-link_item{
+    font-family: var(--primary-font);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--title-color);
+    text-decoration: none;
+    border: 2.5px solid var(--body-color);
+    border-radius: 10px;
+    margin-right: 10px;
+}
