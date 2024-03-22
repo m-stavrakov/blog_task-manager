@@ -40,7 +40,8 @@
                     <a class="nav-link nav-link_item" href="#">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link_item" href="#">Register</a>
+                    <a class="nav-link nav-link_item" href="#"
+                    data-bs-target="#signUp" data-bs-toggle="modal">Register</a>
                 </li>
             </ul>
             {% endif %}
@@ -52,22 +53,133 @@
             {% endif %}
           </div>
         </div>
-      </nav>
+    </nav>
       
-      <main>
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <ul class="flashes">
-            {% for message in messages %}
-              <li>{{ message }}</li>
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        <!-- looping through the messages -->
+            {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'error' %}
+                <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% else %}
+                <div class="alert alert-success alert-dismissable fade show"role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
             {% endfor %}
-            </ul>
-          {% endif %}
+            {% endif %}
         {% endwith %}
-  
+    
         {% block content %}{% endblock %}
-      </main>
+    </main>
+
+ 
+    <footer class="text-center text-lg-start footer">
+        <div class="container p-4 pb-0">
+            <section>
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h1 class="mb-4 footer-title">
+                            Dear Diary
+                        </h1>
+                    </div>
+            
+                    <hr class="w-100 clearfix d-md-none" />
+            
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="mb-4 text-uppercase">
+                            Useful information
+                        </h6>
+                        <p>
+                        <a class="footer-links" href="#">About Us</a>
+                        </p>
+                        <p>
+                        <a class="footer-links" href="#">Careers</a>
+                        </p>
+                        <p>
+                        <a class="footer-links" href="#">Feedback</a>
+                        </p>
+                        <p>
+                        <a class="footer-links" href="#">Contact Us</a>
+                        </p>
+                    </div>
+            
+                    <hr class="w-100 clearfix d-md-none" />
+            
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="mb-4 text-uppercase">
+                            Legals
+                        </h6>
+                        <p>
+                        <a class="footer-links" href="#">Legal</a>
+                        </p>
+                        <p>
+                        <a class="footer-links" href="#">Terms</a>
+                        </p>
+                        <p>
+                        <a class="footer-links" href="#">Cookies</a>
+                        </p>
+                        <p>
+                        <a class="footer-links" href="#">Copyright</a>
+                        </p>
+                    </div>
+            
+                    <hr class="w-100 clearfix d-md-none" />
+            
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4">Contact</h6>
+                        <p><i class="bi bi-house"></i> London, United Kingdom</p>
+                        <p><i class="bi bi-envelope"></i> deardiary@gmail.com</p>
+                        <p><i class="bi bi-telephone"></i> + 44 234 567 8845</p>
+                        <p><i class="bi bi-printer"></i> + 44 234 567 8978</p>
+                    </div>
+                </div>
+            </section>
+          
+            <hr class="my-3">
+          
+            <section class="p-3 pt-0">
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-7 col-lg-8 text-center text-md-start">
+                        <div class="p-3">
+                            © 2024 Copyright: Martin Stavrakov
+                        </div>
+                    </div>
+          
+                    <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+                        <a class="btn btn-floating m-1 socials-btn" role="button">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+            
+                        <a class="btn btn-floating m-1 socials-btn" role="button"> 
+                            <i class="bi bi-twitter"></i>
+                        </a>
+            
+                        <a class="btn btn-floating m-1 socials-btn" role="button">
+                            <i class="bi bi-google"></i>
+                        </a>
+            
+                        <a class="btn btn-floating m-1 socials-btn" role="button">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            </div>
+        </footer>
+
+        {% include 'signUp.html' %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='JavaScript/index.js') }}"></script>
 </body>
 </html>

@@ -6,14 +6,26 @@
     --body-color: #eed9c4;
     --contrast-color: #d9b99b;
     --title-color: #382615;
+    --special-text-color: #CC5500;
 }
 
 body{
     background-color: var(--body-color);
+    font-family: var(--primary-font);
+}
+
+span{
+    /* color: var(--title-color); */
+    color: var(--special-text-color);
+}
+
+.divider-line{
+    width: 100%;
+    padding: 0.5%;
+    background-color: var(--special-text-color);
 }
 
 /* NAVIGATION BAR */
-
 .nav{
     padding: 0;
 }
@@ -43,4 +55,81 @@ body{
     border: 2.5px solid var(--body-color);
     border-radius: 10px;
     margin-right: 10px;
+    cursor: pointer;
 }
+
+.nav-link_item:hover{
+    color: var(--title-color);
+    border: 2.5px solid var(--title-color);
+    transition: .5s ease-in-out;
+}
+
+/* HOME PAGE */
+.start-btn{
+    font-family: var(--primary-font);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--title-color);
+    background-color: var(--body-color);
+    text-decoration: none;
+    border: 2.5px solid var(--contrast-color);
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.start-btn:hover{
+    border: 2.5px solid var(--title-color);
+}
+
+.home-titles{
+    font-family: var(--primary-font);
+    font-size: 2.125rem;
+    font-weight: 600;
+    color: var(--title-color);
+    text-transform: capitalize;
+    margin-right: 10px;
+}
+
+.home-text_description{
+    font-weight: 500;
+}
+
+.home-a{
+    text-decoration: none;
+    color: var(--title-color);
+}
+
+.home-arrow{
+    font-weight: 600;
+}
+
+/* FOOTER */
+.footer{
+    background-color: var(--contrast-color);
+}
+
+.footer-title{
+    font-family: var(--title-font);
+    font-size: 5rem;
+    font-weight: 600;
+    color: var(--title-color);
+    text-transform: capitalize;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.footer-links{
+    text-decoration: none;
+    color: var(--title-color);
+}
+
+.socials-btn{
+    border: 2.5px solid var(--body-color);
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* SIGN UP LOGIN  */
+
