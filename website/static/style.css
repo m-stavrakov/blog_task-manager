@@ -133,3 +133,115 @@ span{
 
 /* SIGN UP LOGIN  */
 
+.registration-title{
+    font-family: var(--title-font);
+    font-size: 2.3rem;
+    word-spacing: 5px;
+}
+
+.register-container{
+    background-color: var(--body-color);
+    border: 5px solid var(--special-text-color);
+    font-family: var(--primary-font);
+    font-weight: 600;
+}
+
+.form-control{
+    background: none;
+    border: 0;
+    border-bottom: 2px solid var(--contrast-color);
+}
+
+.form-control:focus{
+    outline: none;
+    box-shadow: none;
+    background: none;
+    border: 0;
+    border-bottom: 2px solid var(--special-text-color);
+}
+
+.form-boxes{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header, .modal-footer{
+    border: 0;
+}
+
+.modal-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.signup-btn{
+    font-family: var(--primary-font);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--title-color);
+    background-color: var(--body-color);
+    text-decoration: none;
+    border: 2.5px solid var(--contrast-color);
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    width: 100%;
+    transition: .3s ease-in;
+}
+
+.signup-btn:hover{
+    border: 2.5px solid var(--special-text-color);
+}
+
+.redirect-link{
+    text-decoration: none;
+    color: var(--special-text-color);
+    font-weight: 800;
+    transition: .2s ease-in-out;
+}
+
+.redirect-link:hover{
+    border-bottom: 2px solid var(--special-text-color);
+}
+
+/* FLASH MESSAGES */
+.flash-messages-container {
+    position: fixed;
+    /* top: 50%; */
+    top: 4.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; 
+    text-align: center;
+    z-index: 1000;
+}
+
+.flash-message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.error {
+    background-color: #FF5252; 
+    color: #fff; 
+}
+
+.alert-success {
+    background-color: #4CAF50; 
+    color: #fff; 
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+}

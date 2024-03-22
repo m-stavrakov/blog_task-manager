@@ -17,8 +17,8 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
-                username = current_user.username
-                flash(f'Logged in successfully! Good to see you again {username}', category='success')
+                email = current_user.email
+                flash(f'Logged in successfully! Good to see you again {email}', category='success')
                 login_user(user, remember=True)
                 return redirect(url_for('views.blog'))
             else:
@@ -38,19 +38,18 @@ def logout():
     
     return render_template('logout.html')
 
-@auth.route('/sign-up', methods=['GET', 'POST'])
+@auth.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
         first_name = request.form.get('first_name')
         last_name = request.form.get('last_name')
-        username = request.form.get('username')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
-        user = User.query.filter_by(email=email).first()
+        # user = User.query.filter_by(email=email).first()
 
-        if user:
+        if User.query.filter_by(email=email).first():
             flash(f"The email: '{email}' already exists!", category='error')
         elif len(email) < 5:
             flash('Email must be greater than 5 characters!', category='error')
@@ -62,7 +61,7 @@ def sign_up():
             flash('Password must be at least 7 characters, it must contain one capital letter A-Z, one symbol and a number', category='error')
         else:
             # defining the user
-            new_user = User(email=email, first_name=first_name, last_name = last_name, username = username, password = generate_password_hash(password1, method='pbkdf2:sha256'))
+            new_user = User(first_name=first_name, email=email, last_name = last_name, password = generate_password_hash(password1, method='pbkdf2:sha256'))
 
             # adding user to the db
             db.session.add(new_user)

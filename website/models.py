@@ -11,9 +11,9 @@ db = SQLAlchemy()
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
     id = db.mapped_column(db.Integer, primary_key=True)
-    username = db.mapped_column(db.String(30), unique=True, nullable=False)
     first_name = db.mapped_column(db.String(150), nullable=False)
     last_name = db.mapped_column(db.String(150), nullable=False)
+    email = db.mapped_column(db.String(150), nullable=False, unique=True)
     password = db.mapped_column(db.String(150), nullable=False)
 
     def __str__(self):

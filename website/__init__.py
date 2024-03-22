@@ -12,7 +12,7 @@ login_manager = LoginManager()
 def create_app():
     app = Flask(__name__, static_folder='static')
     app.config.from_object('config')
-    db.init_app(app)
+    
 
     from .views import views
     from .auth import auth
@@ -21,6 +21,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     with app.app_context():
+        db.init_app(app)
         db.create_all()
 
     # where the user will be redirected if they have not logged in

@@ -2,32 +2,25 @@
         <div class="modal-dialog">
             <div class="modal-content register-container">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
+                    <h5 class="modal-title registration-title" id="exampleModalLabel">
                         SignUp
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
+                    <form method="post" action="/sign_up">
+                        <div class="mb-3 form-boxes">
                             <label for="first_name" class="col-form-label">
                                 First Name:
                             </label>
                             <input type="text" class="form-control" id="first_name" name="first_name" required/>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3 form-boxes">
                             <label for="last_name" class="col-form-label">
                                 Last Name:
                             </label>
                             <input type="text" class="form-control" id="last_name" name="last_name" required/>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="username" class="col-form-label">
-                                Username:
-                            </label>
-                            <input type="text" class="form-control" id="username" name="username" required/>
                         </div>
 
                         <div class="mb-3">
@@ -50,16 +43,26 @@
                             <label for="password2" class="col-form-label">
                                 Confirm Password:
                             </label>
-                            <input type="text" class="form-control" id="password2"
+                            <input type="password" class="form-control" id="password2"
                             name="password2" required/>
                         </div>
-
+                        <div class="modal-footer">
+                            <button type="submit" class="btn signup-btn">SignUp</button>
+        
+                            <div class="redirect-log_sign">
+                                <p>
+                                    Already have an account?
+                                    <a href="#"
+                                    class="redirect-link"
+                                    data-bs-target="#login" data-bs-toggle="modal">
+                                        Log In!
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+                
             </div>
         </div>
     </div>
