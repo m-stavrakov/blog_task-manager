@@ -2,5 +2,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>hello</h1>
+    <div class="container content">
+        <h2 class="entry-title">{{ entry.title }}</h2>
+        <div class="content-date">
+            <p>{{ entry.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+        </div>
+        <p class="content-content">{{ entry.content|safe }}</p>
+    </div>
 {% endblock %} 

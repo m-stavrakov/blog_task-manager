@@ -25,6 +25,9 @@ span{
     background-color: var(--special-text-color);
 }
 
+/* MESSAGES */
+
+
 /* NAVIGATION BAR */
 .nav{
     padding: 0;
@@ -33,6 +36,10 @@ span{
 .nav-custom{
     background-color: var(--contrast-color);
     padding: 10px;
+}
+
+.navbar-ul a{
+    cursor: pointer;
 }
 
 .nav-title{
@@ -244,4 +251,165 @@ span{
     background: none;
     border: none;
     cursor: pointer;
+}
+
+/* BLOG PAGE */
+.blog-description{
+    margin: 0 auto;
+    padding: 50px;
+    font-family: var(--primary-font);
+}
+
+.blog-description h1{
+    font-family: var(--title-font);
+}
+
+.blog-img{
+    width: 80%;
+}
+
+/* CREATE PAGE */
+.create-entry{
+    padding: 70px;
+    font-family: var(--primary-font);
+}
+
+.create-label{
+    font-size: 32px;
+}
+
+.create-content{
+    border: 2px solid var(--contrast-color);
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.create-content:focus{
+    border: 2px solid var(--special-text-color);
+}
+
+.customize{
+    margin-bottom: 15px;
+}
+
+.customize-btn{
+    border: 2px solid transparent;
+    background: none;
+    font-size: 1.15rem;
+    transition: .3s ease-in-out;
+}
+
+.customize-btn.clicked{
+    border: 2px groove var(--special-text-color);
+}
+
+.bold{
+    font-weight: 600;
+}
+
+.italic{
+    font-style: italic;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+.select-font_size{
+    font-family: var(--primary-font);
+    font-size: 1rem;
+    background-color: var(--body-color);
+    border: 2px solid var(--contrast-color);
+    outline: none;
+    cursor: pointer;
+}
+
+.select-font_size:focus{
+    border: 2px solid var(--special-text-color);
+}
+
+#current-date{
+    font-family: var(--primary-font);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--title-color);
+}
+
+.create-btn{
+    font-family: var(--primary-font);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--title-color);
+    background-color: var(--body-color);
+    text-decoration: none;
+    border: 2px solid var(--contrast-color);
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    width: 100%;
+    transition: .3s ease-in-out;
+}
+
+.create-btn:hover{
+    border: 2px solid var(--special-text-color);
+}
+
+/* ENTRY CARD */
+.entry-card{
+    padding: 20px;
+    margin-top: 20px;
+    background-color: var(--contrast-color);
+    border: 2px solid var(--title-color);
+    transition: 0.3s ease-in-out;
+}
+
+.entry-card:hover{
+    border: 2px solid var(--special-text-color);
+}
+
+.card-title{
+    text-transform: capitalize;
+}
+
+.entry-options{
+    text-decoration: none;
+    color: var(--title-color);
+    transition: .2s ease-in-out;
+}
+
+.entry-options:hover{
+    font-weight: 600;
+    border-bottom: 2px solid var(--special-text-color);
+}
+
+.blog-entries{
+    margin-bottom: 220px;
+}
+
+.entry-content_short{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+/* ENTRY */
+.content{
+    padding: 20px;
+}
+
+.entry-title{
+    text-align: center;
+    font-family: var(--primary-font);
+}
+
+.content-date{
+    opacity: 0.6;
+}
+
+.content-content{
+    border: 2px solid var(--special-text-color);
+    padding: 10px 20px;
 }

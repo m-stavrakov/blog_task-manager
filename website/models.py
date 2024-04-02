@@ -3,8 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text, ForeignKey, Integer, String
 from sqlalchemy.orm import Session, declarative_base, mapped_column, relationship
 import hashlib
-# from . import db
 from datetime import datetime
+# from . import db
 
 db = SQLAlchemy()
 
