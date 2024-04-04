@@ -23,17 +23,17 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-ul">
             {% if current_user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ url_for('views.home') }}">Home</a>
+                <li class="nav-item {% if active_page == 'home' %}active{% endif %}">
+                    <a id="home-link" class="nav-link" href="{{ url_for('views.home') }}">Home</a>
+                </li>
+                <li class="nav-item {% if active_page =='blog' %}active{% endif %}">
+                    <a id="blog-link" class="nav-link" href="{{ url_for('views.blog') }}">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('views.blog') }}">Blog</a>
+                    <a id="calendar-link" class="nav-link" href="#">Tasks Calendar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tasks Calendar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('auth.logout_page') }}" data-bs-target= "#logout" data-bs-toggle="modal">Logout</a>
+                    <a id="logout-link" class="nav-link" href="{{ url_for('auth.logout_page') }}" data-bs-target= "#logout" data-bs-toggle="modal">Logout</a>
                 </li>
             {% else %}
                 <li class="nav-item">

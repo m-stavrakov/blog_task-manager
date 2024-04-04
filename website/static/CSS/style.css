@@ -15,7 +15,6 @@ body{
 }
 
 span{
-    /* color: var(--title-color); */
     color: var(--special-text-color);
 }
 
@@ -25,8 +24,12 @@ span{
     background-color: var(--special-text-color);
 }
 
-/* MESSAGES */
-
+.invisible-container{
+    width: 100vw;
+    height: 400px;
+    /* visibility: hidden; */
+    overflow: auto;
+}
 
 /* NAVIGATION BAR */
 .nav{
@@ -71,6 +74,10 @@ span{
     transition: .5s ease-in-out;
 }
 
+.active{
+    font-weight: 600;
+}
+
 /* HOME PAGE */
 .start-btn{
     font-family: var(--primary-font);
@@ -111,6 +118,24 @@ span{
     font-weight: 600;
 }
 
+.home-btn{
+    font-family: var(--primary-font);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--title-color);
+    background-color: var(--body-color);
+    text-decoration: none;
+    border: 2.5px solid var(--contrast-color);
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.home-btn:hover{
+    border: 2.5px solid var(--special-text-color);
+    color: var(--title-color);
+}
+
 /* FOOTER */
 .footer{
     background-color: var(--contrast-color);
@@ -138,7 +163,7 @@ span{
     cursor: pointer;
 }
 
-/* SIGN UP LOGIN  */
+/* SIGN UP / LOGIN  / LOGOUT*/
 
 .registration-title{
     font-family: var(--title-font);
@@ -211,6 +236,11 @@ span{
 
 .redirect-link:hover{
     border-bottom: 2px solid var(--special-text-color);
+}
+
+.logout-text{
+    font-size: 1.2rem;
+    text-align: center;
 }
 
 /* FLASH MESSAGES */
@@ -385,7 +415,7 @@ span{
 }
 
 .blog-entries{
-    margin-bottom: 220px;
+    height: 100vh;
 }
 
 .entry-content_short{
@@ -413,3 +443,4 @@ span{
     border: 2px solid var(--special-text-color);
     padding: 10px 20px;
 }
+

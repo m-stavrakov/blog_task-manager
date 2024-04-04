@@ -6,24 +6,22 @@ from . import db, login_manager
 import json
 
 views = Blueprint('views', __name__)
-
-# telling flask which user to look for 
-# @login_manager.user_loader
-# def load_user(user_id):
-#     return User.query.get(int(user_id))
     
 # this is the front page that the user will see when they aren't logged in
 @views.route('/')
 def home():
+    active_page = 'home'
     if current_user.is_authenticated:
-        return render_template('home.html')
+        first_name = current_user.first_name
+        return render_template('home.html', first_name=first_name, active_page=active_page)
     
     return render_template('front-page.html')
 
 @views.route('/blog', methods=['GET', 'POST'])
 @login_required
 def blog():
-    return render_template('blog.html', entries=DiaryEntry.query.all(), user=User.query.all())
+    active_page = 'blog'
+    return render_template('blog.html', entries=DiaryEntry.query.all(), user=User.query.all(), active_page=active_page)
 
 @views.route('/diary_entry', methods=['GET', 'POST'])
 @login_required
@@ -64,10 +62,14 @@ def edit_page(entry_id):
 def edit_entry(entry_id):
     entry = DiaryEntry.query.get_or_404(entry_id)
 
-    entry.title = request.form['title']
-    entry.content = request.form['content']
+    if 'title' in request.form:
+        entry.title = request.form['title']
+    
+    if 'content' in request.form:
+        entry.content = request.form['content']
+
     db.session.commit()
-    return redirect(url_for('entry', entry_id=entry.id))
+    return redirect(url_for('views.entry', entry_id=entry.id))
 
 @views.route('/delete/<int:entry_id>', methods=['GET'])
 @login_required

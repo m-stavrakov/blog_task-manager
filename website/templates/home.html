@@ -3,12 +3,12 @@
 
 {% block content %}
 
-    <div class="container jumbotron blog-description">
+    <div id='home-link' class="container jumbotron blog-description">
         <div class="row">
             <div class="col-lg-8 order-lg-1 order-2">
                 <!-- Text content goes here -->
                 <h1 class="display-4">
-                    Welcome
+                    Welcome {{ first_name }}
                 </h1>
                 <p class="lead">
                     Welcome to your personal diary page. Here you can write your deepest secrets, your most special moments, and your struggles. 
@@ -18,7 +18,7 @@
                 <p>
                     Start writing for free now!!!
                 </p>
-                <a class="btn btn-primary btn-lg" href="{{ url_for('views.diary_entry') }}" role="button">
+                <a class="btn btn-lg home-btn" href="{{ url_for('views.diary_entry') }}" role="button">
                     <i class="bi bi-chevron-right"></i> Start Writing
                 </a>
             </div>
