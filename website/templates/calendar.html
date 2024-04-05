@@ -1,0 +1,96 @@
+{% set title = "Blog Posts" %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container calendar-events">
+        <div class="events-container">
+            {% if  tasks %}
+                {% for task in tasks %}
+                    <div class="events-present">
+                        <h3>Your events</h3>
+                    </div>
+                    <div class="event-card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ task.event_title }}</h5>
+                            <p class="card-text">{{ task.event_description }}</p>
+                            <p class="card-text">{{ task.event_start }}</p>
+                            <p class="card-text">{{ task.event_end }}</p>
+                            <a href="{{ url_for('views.edit_task', event_id=task.id) }}" class="btn btn-primary">Edit</a>
+                            <a href="{{ url_for('views.delete_task', event_id=task.id) }}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                    <div class="events-present">
+                        <h3>No events yet</h3>
+                    </div>
+            {% endif %}
+        </div>
+
+        <div class="row calendar-header">
+            <div class="col-md-12 calendar-container">
+                <div class="col-md-12 col-sm-2 text-center month-container">
+                    <button id="prev-month" class="btn btn-secondary btn-sm">&lt;</button>
+                    <div class="month-year">
+                        <span id="calendar-month"></span>
+                        <span id="calendar-year"></span>
+                    </div>
+                    <button id="next-month" class="btn btn-secondary btn-sm">&gt;</button>
+                </div>
+                <table class="calendar">
+                    <thead>
+                        <tr>
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="event-modal" tabindex="-1" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content event_modal">
+
+                <div class="modal-header">
+                    <h5 class="modal-title task-header">Create Event</h5>
+                    <button type="button" class="btn-close task-close" data-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="event-form" method="POST" action="{{ url_for('views.calendar_action') }}">
+                        <div class="form-group mb-3">
+                            <label for="event-title">Event Title:</label>
+                            <input name="event-title" type="text" class="form-control tasks-input" id="event-title" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="event-description">Description:</label>
+                            <textarea name="event-description" class="form-control tasks-input" id="event-description"></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="event-start-time">Start Time:</label>
+                            <input name="event-start-time" type="datetime-local" class="form-control date-time" id="event-start-time" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="event-end-time">End Time:</label>
+                            <input name="event-end-time" type="datetime-local" class="form-control date-time" id="event-end-time" required>
+                        </div>
+                        <button type="submit" class="subm-btn">Create Event</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %} 

@@ -29,8 +29,8 @@
                 <li class="nav-item {% if active_page =='blog' %}active{% endif %}">
                     <a id="blog-link" class="nav-link" href="{{ url_for('views.blog') }}">Blog</a>
                 </li>
-                <li class="nav-item">
-                    <a id="calendar-link" class="nav-link" href="#">Tasks Calendar</a>
+                <li class="nav-item {% if active_page =='calendar' %}active{% endif %}">
+                    <a id="calendar-link" class="nav-link" href="{{ url_for('views.calendar') }}">Tasks Calendar</a>
                 </li>
                 <li class="nav-item">
                     <a id="logout-link" class="nav-link" href="{{ url_for('auth.logout_page') }}" data-bs-target= "#logout" data-bs-toggle="modal">Logout</a>

@@ -6,7 +6,7 @@
         <form action="{{ url_for('views.diary_entry') }}" method="POST">
             <div class="mb-3">
                 <label for="title" class="form-label create-label">Title</label>
-                <input type="text" name="title" class="form-control" id="title" placeholder="A lovely day with family">
+                <input type="text" name="title" class="form-control auth" id="title" placeholder="A lovely day with family">
             </div>
             <div class="mb-3">
                 <p id="current-date"></p>
@@ -25,7 +25,7 @@
                     </select>
                 </div>
                 <label for="content" class="form-label create-label">Dear Diary today,</label>
-                <div id="blog-content" class="form-control create-content" name="content" contenteditable="true"></div>
+                <div id="blog-content" class="form-control auth create-content" name="content" contenteditable="true"></div>
             </div>
             <button type="submit" class="create-btn">Create</button>
         </form>

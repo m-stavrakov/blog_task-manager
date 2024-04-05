@@ -88,3 +88,113 @@ if (textCustomizationPresent){
         }
     });
 };
+
+// CALENDAR
+let calendarPresent = document.querySelector('.calendar-events');
+
+
+if (calendarPresent){
+    document.addEventListener("DOMContentLoaded", function() {
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        // Function to generate calendar
+        function generateCalendar(month, year) {
+            let firstDay = new Date(year, month, 1);
+            let lastDay = new Date(year, month + 1, 0);
+            let totalDays = lastDay.getDate();
+            let startingDay = firstDay.getDay();
+            let monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            let monthName = monthNames[month];
+            document.getElementById('calendar-month').textContent = monthName + ' ';
+            document.getElementById('calendar-year').textContent = year;
+
+            // Fill in the days
+            let date = 1;
+            let calendarBody = document.getElementById('calendar-body');
+            calendarBody.innerHTML = '';
+            for (let i = 0; i < 6; i++) {
+                let row = calendarBody.insertRow();
+                for (let j = 0; j < 7; j++) {
+                    let cell = row.insertCell();
+                    if (i === 0 && j < startingDay) {
+                        // Add empty cells before the first day of the month
+                        cell.innerHTML = '';
+                    } else if (date > totalDays) {
+                        // If all days of the month are added, exit the loop
+                        break;
+                    } else {
+                        cell.innerHTML = date;
+                        cell.addEventListener('click', function() {
+                            let clickedDate = new Date(currentYear, currentMonth, parseInt(cell.textContent) + 1);
+                            showModal(clickedDate);
+                        });
+                        date++;
+                    }
+                }
+            }
+        }
+
+        // Initial generation of calendar
+        generateCalendar(currentMonth, currentYear);
+
+        // Function to show the modal
+        function showModal(clickedDate) {
+            let modal = document.getElementById('event-modal');
+            modal.classList.add('show');
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+
+            // Set start and end time input fields with the clicked date
+            let startTimeInput = document.getElementById('event-start-time');
+            let endTimeInput = document.getElementById('event-end-time');
+            startTimeInput.value = clickedDate.toISOString().substring(0, 16);
+            endTimeInput.value = clickedDate.toISOString().substring(0, 16);
+        }
+
+        // Function to hide the modal
+        function hideModal() {
+            let modal = document.getElementById('event-modal');
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+        }
+
+        // Add submit event listener to the event form
+        document.getElementById('event-form').addEventListener('submit', function(e) {
+            // e.preventDefault();
+            // Process form data and close modal
+            hideModal();
+        });
+
+        document.querySelector('.task-close').addEventListener('click', function() {
+            hideModal();
+        });
+
+        hideModal();
+
+
+        // Handling previous month button click
+        document.getElementById('prev-month').addEventListener('click', function() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+
+        // Handling next month button click
+        document.getElementById('next-month').addEventListener('click', function() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+    });
+};

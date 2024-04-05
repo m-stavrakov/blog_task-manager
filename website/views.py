@@ -1,7 +1,7 @@
 # Storing standard roots for the website
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
-from .models import DiaryEntry, User
+from .models import DiaryEntry, User, Tasks
 from . import db, login_manager
 import json
 
@@ -78,3 +78,45 @@ def delete_entry(entry_id):
     db.session.delete(entry)
     db.session.commit()
     return redirect(url_for('views.blog'))
+
+@views.route('/calendar', methods=['GET'])
+@login_required
+def calendar():
+    active_page = 'calendar'
+    return render_template('calendar.html', active_page=active_page, tasks=Tasks.query.all())
+
+@views.route('/calendar', methods=['POST'])
+@login_required
+def calendar_action():
+    if request.method == 'POST':
+        event_title = request.form['event-title']
+        event_description = request.form['event-description']
+        event_start = request.form['event-start-time']
+        event_end = request.form['event-end-time']
+
+        if not event_title or not event_description:
+            flash('Title and description are required', category='error')
+        else:
+            task = Tasks(
+            event_title = event_title,
+            event_description = event_description,
+            start_time = event_start,
+            end_time = event_end,
+            )
+            db.session.add(task)
+            db.session.commit()
+            flash('New event to your calendar was created', category='success')
+            return redirect(url_for('views.calendar'))
+    
+@views.route('/delete/<int:event_id>', methods=['GET'])
+@login_required
+def delete_task(event_id):
+    task = Tasks.query.get_or_404(event_id)
+    db.session.delete(task)
+    db.session.commit()
+    return redirect(url_for('views.calendar'))
+
+@views.route('/edit/<int:event_id>', methods=['GET'])
+@login_required
+def edit_task(task_id):
+    pass

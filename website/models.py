@@ -31,5 +31,13 @@ class DiaryEntry(db.Model):
     def __str__(self):
         return f'"{self.title}" by {self.user.first_name} ({self.created_at:%d-%m-%Y})'
 
-# class Tasks(db.Model):
-#     pass
+class Tasks(db.Model):
+    __tablename__ = 'tasks'
+    id = db.mapped_column(db.Integer, primary_key=True)
+    event_title = db.mapped_column(db.String(50), nullable=False)
+    event_description = db.mapped_column(db.Text, nullable=False)
+    start_time = db.mapped_column(db.DateTime, nullable=False)
+    end_time = db.mapped_column(db.DateTime, nullable=False)
+
+    def __str__(self):
+        return f'"{self.event_title}":  {self.user.first_name} | {self.start_time:%d-%m-%Y} - {self.end_time}'
