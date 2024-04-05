@@ -107,16 +107,32 @@ def calendar_action():
             db.session.commit()
             flash('New event to your calendar was created', category='success')
             return redirect(url_for('views.calendar'))
-    
-@views.route('/delete/<int:event_id>', methods=['GET'])
-@login_required
-def delete_task(event_id):
-    task = Tasks.query.get_or_404(event_id)
-    db.session.delete(task)
-    db.session.commit()
-    return redirect(url_for('views.calendar'))
 
 @views.route('/edit/<int:event_id>', methods=['GET'])
 @login_required
-def edit_task(task_id):
-    pass
+def edit_tasks_page(event_id):
+    event = Tasks.query.get_or_404(event_id)
+
+    return render_template("edit_tasks.html", event=event)
+
+@views.route('/edit/<int:event_id>', methods=['POST'])
+@login_required
+def edit_task(event_id):
+    event = Tasks.query.get_or_404(event_id)
+
+    if 'title' in request.form:
+        event.title = request.form['event-title']
+    
+    if 'description' in request.form:
+        event.description = request.form['event-description']
+
+    db.session.commit()
+    return redirect(url_for('views.calendar', event_id=event.id))
+
+@views.route('/delete/<int:event_id>', methods=['POST'])
+@login_required
+def delete_task(event_id):
+    event = Tasks.query.get_or_404(event_id)
+    db.session.delete(event)
+    db.session.commit()
+    return redirect(url_for('views.calendar'))

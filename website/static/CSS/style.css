@@ -526,6 +526,8 @@ span{
     width: 40%;
     padding: 20px;
     border-right: 10px solid var(--contrast-color);
+    overflow: scroll;
+    height: 500px;
 }
 
 .event_modal{
