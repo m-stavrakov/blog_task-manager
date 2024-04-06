@@ -48,14 +48,17 @@ def diary_entry():
 @views.route('/entry/<int:entry_id>')
 def entry(entry_id):
     entry = DiaryEntry.query.get_or_404(entry_id)
-    return render_template('entry.html', entry=entry)
+    active_page = 'blog'
+
+    return render_template('entry.html', entry=entry, active_page=active_page)
 
 @views.route("/edit/<int:entry_id>", methods=["GET"])
 @login_required
 def edit_page(entry_id):
     entry = DiaryEntry.query.get_or_404(entry_id)
+    active_page = 'blog'
 
-    return render_template("edit.html", entry=entry)
+    return render_template("edit.html", entry=entry, active_page=active_page)
 
 @views.route('/edit/<int:entry_id>', methods=['POST'])
 @login_required
@@ -108,28 +111,37 @@ def calendar_action():
             flash('New event to your calendar was created', category='success')
             return redirect(url_for('views.calendar'))
 
-@views.route('/edit/<int:event_id>', methods=['GET'])
+@views.route('/edit_event/<int:event_id>', methods=['GET'])
 @login_required
 def edit_tasks_page(event_id):
     event = Tasks.query.get_or_404(event_id)
+    event_start_time_str = event.start_time.strftime('%Y-%m-%dT%H:%M')
+    event_end_time_str = event.end_time.strftime('%Y-%m-%dT%H:%M')
+    active_page = 'calendar'
 
-    return render_template("edit_tasks.html", event=event)
+    return render_template("edit_tasks.html", event=event, active_page=active_page, start_time=event_start_time_str, end_time=event_end_time_str)
 
-@views.route('/edit/<int:event_id>', methods=['POST'])
+@views.route('/edit_event/<int:event_id>', methods=['POST'])
 @login_required
 def edit_task(event_id):
     event = Tasks.query.get_or_404(event_id)
 
-    if 'title' in request.form:
-        event.title = request.form['event-title']
+    if 'event_title' in request.form:
+        event.event_title = request.form['event-title']
     
-    if 'description' in request.form:
-        event.description = request.form['event-description']
+    if 'event_description' in request.form:
+        event.event_description = request.form['event-description']
+    
+    if'start_time' in request.form:
+        event.start_time = request.form['event-start-time']
+
+    if 'end_time' in request.form:
+        event.end_time = request.form['event-end-time']
 
     db.session.commit()
     return redirect(url_for('views.calendar', event_id=event.id))
 
-@views.route('/delete/<int:event_id>', methods=['POST'])
+@views.route('/delete_event/<int:event_id>', methods=['GET'])
 @login_required
 def delete_task(event_id):
     event = Tasks.query.get_or_404(event_id)

@@ -2,5 +2,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div>Edit tasks</div>
+    <div id="event-modal" class="edit-task_container">
+        <div>
+            <div class="event_modal edit_modal">
+
+                <div class="modal-header">
+                    <h5 class="modal-title task-header">Edit Event</h5>
+                </div>
+
+                <div class="modal-body">
+                    <form id="event-form" method="POST" action="{{ url_for('views.edit_task', event_id=event.id) }}">
+                        <div class="form-group mb-3">
+                            <label for="event-title">Event Title:</label>
+                            <input name="event-title" type="text" class="form-control tasks-input" id="event-title" value="{{ event.event_title }}">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="event-description">Description:</label>
+                            <textarea name="event-description" class="form-control tasks-input" id="event-description">{{ event.event_description|safe }}</textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="event-start-time">Start Time:</label>
+                            <input name="event-start-time" type="datetime-local" class="form-control date-time" id="event-start-time" value="{{ event.start_time }}">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="event-end-time">End Time:</label>
+                            <input name="event-end-time" type="datetime-local" class="form-control date-time" id="event-end-time" value="{{ event.end_time }}">
+                        </div>
+                        <button type="submit" class="subm-btn">Save Changes</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

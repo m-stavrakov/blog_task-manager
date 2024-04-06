@@ -589,3 +589,12 @@ span{
 .subm-btn:hover{
     border: 2px solid var(--special-text-color);
 }
+
+/* EDIT TASKS */
+.edit-task_container{
+    margin: 20px;
+}
+
+.edit_modal{
+    padding: 20px;
+}

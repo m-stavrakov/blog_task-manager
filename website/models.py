@@ -40,4 +40,4 @@ class Tasks(db.Model):
     end_time = db.mapped_column(db.DateTime, nullable=False)
 
     def __str__(self):
-        return f'"{self.event_title}":  {self.user.first_name} | {self.start_time:%d-%m-%Y} - {self.end_time}'
+        return f'"{self.event_title}":  {self.event_description} | {self.start_time:%d-%m-%Y} - {self.end_time}'
