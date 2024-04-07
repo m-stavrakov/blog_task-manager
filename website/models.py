@@ -1,4 +1,4 @@
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text, ForeignKey, Integer, String
 from sqlalchemy.orm import Session, declarative_base, mapped_column, relationship
@@ -38,7 +38,7 @@ class Tasks(db.Model):
     event_description = db.mapped_column(db.Text, nullable=False)
     start_time = db.mapped_column(db.DateTime, nullable=False)
     end_time = db.mapped_column(db.DateTime, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False, default=lambda: current_user.id)
     user = db.relationship('User', backref=db.backref('tasks', lazy=True))
 
     def __str__(self):

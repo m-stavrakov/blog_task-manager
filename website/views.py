@@ -88,9 +88,9 @@ def delete_entry(entry_id):
 def calendar():
     active_page = 'calendar'
 
-    # tasks = Tasks.query.filter_by(user_id=current_user.id).all()
-    # return render_template('calendar.html', active_page=active_page, tasks=tasks)
-    return render_template('calendar.html', active_page=active_page, tasks=Tasks.query.all())
+    tasks = Tasks.query.filter_by(user_id=current_user.id).all()
+    return render_template('calendar.html', active_page=active_page, tasks=tasks)
+    # return render_template('calendar.html', active_page=active_page, tasks=Tasks.query.all())
 
 @views.route('/calendar', methods=['POST'])
 @login_required
@@ -109,6 +109,7 @@ def calendar_action():
             event_description = event_description,
             start_time = event_start,
             end_time = event_end,
+            user_id = current_user.id,
             )
             db.session.add(task)
             db.session.commit()
