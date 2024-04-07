@@ -1,4 +1,3 @@
-# Storing standard roots for the website
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
 from .models import DiaryEntry, User, Tasks
@@ -21,7 +20,9 @@ def home():
 @login_required
 def blog():
     active_page = 'blog'
-    return render_template('blog.html', entries=DiaryEntry.query.all(), user=User.query.all(), active_page=active_page)
+    entries = DiaryEntry.query.filter_by(user_id=current_user.id).all()
+
+    return render_template('blog.html', entries=entries, active_page=active_page)
 
 @views.route('/diary_entry', methods=['GET', 'POST'])
 @login_required
@@ -86,6 +87,9 @@ def delete_entry(entry_id):
 @login_required
 def calendar():
     active_page = 'calendar'
+
+    # tasks = Tasks.query.filter_by(user_id=current_user.id).all()
+    # return render_template('calendar.html', active_page=active_page, tasks=tasks)
     return render_template('calendar.html', active_page=active_page, tasks=Tasks.query.all())
 
 @views.route('/calendar', methods=['POST'])
@@ -126,16 +130,16 @@ def edit_tasks_page(event_id):
 def edit_task(event_id):
     event = Tasks.query.get_or_404(event_id)
 
-    if 'event_title' in request.form:
+    if 'event-title' in request.form:
         event.event_title = request.form['event-title']
     
-    if 'event_description' in request.form:
+    if 'event-description' in request.form:
         event.event_description = request.form['event-description']
     
-    if'start_time' in request.form:
+    if'event-start-time' in request.form:
         event.start_time = request.form['event-start-time']
 
-    if 'end_time' in request.form:
+    if 'event-end-time' in request.form:
         event.end_time = request.form['event-end-time']
 
     db.session.commit()

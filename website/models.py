@@ -38,6 +38,8 @@ class Tasks(db.Model):
     event_description = db.mapped_column(db.Text, nullable=False)
     start_time = db.mapped_column(db.DateTime, nullable=False)
     end_time = db.mapped_column(db.DateTime, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user = db.relationship('User', backref=db.backref('tasks', lazy=True))
 
     def __str__(self):
         return f'"{self.event_title}":  {self.event_description} | {self.start_time:%d-%m-%Y} - {self.end_time}'
