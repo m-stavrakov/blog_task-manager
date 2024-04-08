@@ -1,0 +1,33 @@
+{% set title = "Create Post" %}
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container create-entry date">
+        <form action="{{ url_for('views.diary_entry') }}" method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label create-label">Title</label>
+                <input type="text" name="title" class="form-control auth" id="title" placeholder="A lovely day with family">
+            </div>
+            <div class="mb-3">
+                <p id="current-date"></p>
+            </div>
+            <input type="hidden" id="blog-content-hidden" name="content" value="">
+            <div class="mb-3">
+                <div class="customize">
+                    <button type="button" class="customize-btn bold" id="bold">B</button>
+                    <button type="button" class="customize-btn italic" id="italic">I</button>
+                    <button type="button" class="customize-btn underline" id="underline">U</button>
+                    <select class="select-font_size" id="font-size">
+                        <option value="16">16px</option>
+                        <option value="18">18px</option>
+                        <option value="20">20px</option>
+                        <option value="22">22px</option>
+                    </select>
+                </div>
+                <label for="content" class="form-label create-label">Dear Diary today,</label>
+                <div id="blog-content" class="form-control auth create-content" name="content" contenteditable="true"></div>
+            </div>
+            <button type="submit" class="create-btn">Create</button>
+        </form>
+    </div>
+{% endblock %} 

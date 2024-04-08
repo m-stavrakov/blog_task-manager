@@ -1,0 +1,46 @@
+{% set title = "Blog Posts" %}
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    {% if entries %}
+        <div id='blog-link' class="container blog-entries">
+            <div class="row row-cols-1 row-cols-md-2 justify-content-center">
+                {% for entry in entries %}
+                    <div class="col">
+                        <div class="card mb-3 entry-card">
+                            <div class="card-body">
+                            <h5 class="card-title">{{ entry.title }}</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary separator-header">{{ entry.created_at.strftime('%Y-%m-%d %H:%M') }}</h6>
+                            <p class="card-text entry-content_short content">{{ entry.content|safe }}</p>
+                            <hr class="separator">
+                            <div class="diary-options">
+                                <a href="{{ url_for('views.entry', entry_id=entry.id) }}" class="card-link entry-options">
+                                    View
+                                </a>
+                                <a href="{{ url_for('views.edit_page', entry_id=entry.id) }}" class="card-link entry-options">
+                                    Edit
+                                </a>
+                                <a href="{{ url_for('views.delete_entry', entry_id=entry.id) }}" class="card-link entry-options">
+                                    Delete
+                                </a>
+                                <a href="{{ url_for('views.diary_entry') }}" class="card-link entry-options">
+                                    Create New
+                                </a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <h1>You have no diary entries yet!</h1>
+            <a href="{{ url_for('views.diary_entry') }}" class="btn btn-lg home-btn">Start Writing</a>
+        </div>
+        <div class="invisible-container"></div>
+    {% endif %}
+
+{% endblock %}
