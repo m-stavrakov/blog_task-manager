@@ -1,6 +1,5 @@
 from flask_login import UserMixin, current_user
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import text, ForeignKey, Integer, String
 from datetime import datetime
 
 db = SQLAlchemy()

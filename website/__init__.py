@@ -1,17 +1,14 @@
-from flask import Flask, render_template, Blueprint, flash, url_for
-from flask_sqlalchemy import SQLAlchemy
-from os import path
-from flask_login import LoginManager, current_user
-from werkzeug.security import check_password_hash, generate_password_hash
-from .models import User, DiaryEntry, db
+from flask import Flask
+import os
+from flask_login import LoginManager
+from .models import User, db
 
-# initiating db
-# db = SQLAlchemy()
 login_manager = LoginManager()
 
 def create_app():
     app = Flask(__name__, static_folder='static')
     app.config.from_object('config')
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql://martinstavrakov:password@localhost:5432/blog-tasks')
     db.init_app(app)
 
     from .views import views

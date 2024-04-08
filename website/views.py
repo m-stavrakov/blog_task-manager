@@ -1,7 +1,7 @@
-from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
-from .models import DiaryEntry, User, Tasks
-from . import db, login_manager
+from .models import DiaryEntry, Tasks
+from . import db
 
 views = Blueprint('views', __name__)
     
@@ -89,7 +89,6 @@ def calendar():
 
     tasks = Tasks.query.filter_by(user_id=current_user.id).all()
     return render_template('calendar.html', active_page=active_page, tasks=tasks)
-    # return render_template('calendar.html', active_page=active_page, tasks=Tasks.query.all())
 
 @views.route('/calendar', methods=['POST'])
 @login_required
@@ -102,6 +101,7 @@ def calendar_action():
 
         if not event_title or not event_description:
             flash('Title and description are required', category='error')
+            return redirect(url_for('views.calendar'))
         else:
             task = Tasks(
             event_title = event_title,
