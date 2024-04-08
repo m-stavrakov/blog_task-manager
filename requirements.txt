@@ -1,0 +1,8 @@
+Flask~=2.0 # (Any version starting with "2.")
+Gunicorn
+Flask-SQLAlchemy
+Flask-Login
+Werkzeug
+Flask-Migrate
+psycopg2-binary
+bcrypt

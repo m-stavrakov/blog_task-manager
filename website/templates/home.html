@@ -1,0 +1,30 @@
+{% set title = "Home Page" %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id='home-link' class="container jumbotron blog-description">
+        <div class="row">
+            <div class="col-lg-8 order-lg-1 order-2">
+                <h1 class="display-4">
+                    Welcome {{ first_name }}
+                </h1>
+                <p class="lead">
+                    Welcome to your personal diary page. Here you can write your deepest secrets, your most special moments, and your struggles. 
+                    Here you do not have to be scared to be yourself! Be free and express yourself!
+                </p>
+                <hr class="my-4">
+                <p>
+                    Start writing for free now!!!
+                </p>
+                <a class="btn btn-lg home-btn" href="{{ url_for('views.diary_entry') }}" role="button">
+                    <i class="bi bi-chevron-right"></i> Start Writing
+                </a>
+            </div>
+            <div class="col-lg-4 order-lg-2 order-1">
+                <img src="/static/images/writing.svg" class="img-fluid blog-img" alt="woman writing in notebook">
+            </div>
+        </div>
+    </div>
+
+{% endblock %} 
