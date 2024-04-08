@@ -194,3 +194,11 @@ if (calendarPresent){
         });
     });
 };
+
+// Logout user when they close the window
+window.addEventListener('beforeunload', function (e) {
+    // Send AJAX request to log out the user when the window is closed or navigated away
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', '/logout-on-close', true);
+    xhr.send();
+});

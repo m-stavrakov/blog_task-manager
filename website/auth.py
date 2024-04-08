@@ -83,3 +83,8 @@ def sign_up():
             login_user(new_user, remember=True)
             flash('Account created!', category='success')
             return redirect(url_for('views.home'))
+
+@auth.route('/logout-on-close', methods=['POST'])
+def logout_on_close():
+    logout_user()
+    return "Logged out successfully"
