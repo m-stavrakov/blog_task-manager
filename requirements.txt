@@ -5,3 +5,4 @@ Flask-Login
 Werkzeug
 Flask-Migrate
 psycopg2-binary
+bcrypt
