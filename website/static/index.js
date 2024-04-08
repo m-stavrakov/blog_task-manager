@@ -63,7 +63,6 @@ if (textCustomizationPresent){
         });
 
         fontSizeSelect.addEventListener('change', function() {
-            // editor.style.fontSize = fontSizeSelect.value + 'px';
             applyFontStyle(fontSizeSelect.value + 'px');
             document.execCommand('foreColor', false, 'black');
         });
@@ -73,9 +72,8 @@ if (textCustomizationPresent){
         }
 
         function applyFontStyle(fontStyle) {
-            editor.focus(); // Ensure the editor has focus
+            editor.focus();
 
-            // Listen for the keypress event to intercept user input
             editor.addEventListener('keypress', function(event) {
                 // Check if a printable character is pressed (excluding modifier keys like Shift)
                 if (event.key.length === 1 && !event.ctrlKey && !event.altKey) {
@@ -84,7 +82,7 @@ if (textCustomizationPresent){
                     document.execCommand('fontSize', false, fontStyle);
                     editor.style.color = 'black';
                 }
-            }, { once: true }); // Remove the event listener after the first keypress
+            }, { once: true });
         }
     });
 };
@@ -165,8 +163,6 @@ if (calendarPresent){
 
         // Add submit event listener to the event form
         document.getElementById('event-form').addEventListener('submit', function(e) {
-            // e.preventDefault();
-            // Process form data and close modal
             hideModal();
         });
 
