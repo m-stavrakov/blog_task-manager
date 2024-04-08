@@ -3,3 +3,4 @@ Gunicorn
 Flask-SQLAlchemy
 Flask-Login
 Werkzeug
+Flask-Migrate
