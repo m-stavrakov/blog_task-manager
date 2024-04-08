@@ -1,5 +1,6 @@
 from website import create_app
 from website import db
+from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 app = create_app()
