@@ -1,47 +1,47 @@
-   <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content register-container">
-                <div class="modal-header">
-                    <h5 class="modal-title registration-title" id="exampleModalLabel">
-                        Login
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form form action="{{ url_for('auth.login') }}" method="POST">
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content register-container">
+            <div class="modal-header">
+                <h5 class="modal-title registration-title" id="exampleModalLabel">
+                    Login
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form form action="{{ url_for('auth.login') }}" method="POST">
 
-                        <div class="mb-3">
-                            <label for="email" class="col-form-label">
-                                Email:
-                            </label>
-                            <input type="text" class="form-control auth" id="email"
-                            name="email" required/>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="password1" class="col-form-label">
-                                Password:
-                            </label>
-                            <input type="password" class="form-control auth" id="password1"
-                            name="password1" required/>
-                        </div>
-                        <div class="modal-footer">
-                    <button type="submit" class="btn signup-btn">Login</button>
-
-                    <div class="redirect-log_sign">
-                        <p>
-                            Don't have an account?
-                            <a href="#"
-                            class="redirect-link"
-                            data-bs-target="#signUp" data-bs-toggle="modal">
-                                Register!
-                            </a>
-                        </p>
+                    <div class="mb-3">
+                        <label for="email" class="col-form-label">
+                            Email:
+                        </label>
+                        <input type="text" class="form-control auth" id="email"
+                        name="email" required/>
                     </div>
-                </div>
 
-                    </form>
+                    <div class="mb-3">
+                        <label for="password1" class="col-form-label">
+                            Password:
+                        </label>
+                        <input type="password" class="form-control auth" id="password1"
+                        name="password1" required/>
+                    </div>
+                    <div class="modal-footer">
+                <button type="submit" class="btn signup-btn">Login</button>
+
+                <div class="redirect-log_sign">
+                    <p>
+                        Don't have an account?
+                        <a href="#"
+                        class="redirect-link"
+                        data-bs-target="#signUp" data-bs-toggle="modal">
+                            Register!
+                        </a>
+                    </p>
                 </div>
+            </div>
+
+                </form>
             </div>
         </div>
     </div>
+</div>

@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user
 import re
-import bcrypt
+from werkzeug.security import generate_password_hash, check_password_hash
 
 auth = Blueprint('auth', __name__)
 
@@ -15,17 +15,25 @@ def login_page():
 @auth.route('/login', methods=['POST'])
 def login():
     email = request.form.get('email')
-    password = request.form.get('password')
-    salt = bcrypt.gensalt()
+    password = request.form.get('password1')
+
+    # Check if email and password are provided
+    if not email or not password:
+        flash("Email and password are required", category='error')
+        return redirect(url_for("views.home"))
+
     user = User.query.filter_by(email=email).first()
-    if password is not None:
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
-        if not user:
-            flash(f"No user with this email: '{email}'")
-            return redirect(url_for("login_page"))
-        if hashed_password!= user.password:
-            flash(f"Invalid password for the user '{email}'")
-            return redirect(url_for("login_page"))
+
+    # Check if the user exists
+    if not user:
+        flash(f"No user with this email: '{email}'", category='error')
+        return redirect(url_for("views.home"))
+    
+    # Check if the password is correct
+    if not check_password_hash(user.password, password):
+        flash(f"Invalid password for the user '{email}'", category='error')
+        return redirect(url_for("views.home"))
+    
     login_user(user, remember=True)
     first_name = user.first_name
     flash(f'Logged in successfully! Good to see you again {first_name}', category='success')
